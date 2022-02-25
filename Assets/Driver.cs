@@ -5,8 +5,8 @@ using UnityEngine;
 public class Driver : MonoBehaviour
 {
     //Adding SerializeField will make variable available in unity inspector
-    [SerializeField] float steerSpeed = 0.5f;
-    [SerializeField] float moveSpeed = 0.01f;
+    [SerializeField] float steerSpeed = 300;
+    [SerializeField] float moveSpeed = 10.5f;
 
 
     // Start is called before the first frame update
@@ -18,10 +18,11 @@ public class Driver : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        float steerAmount = Input.GetAxis("Horizontal") * steerSpeed;
+        //Time.deltaTime get a constant framespeed across different computer speed
+        float steerAmount = Input.GetAxis("Horizontal") * steerSpeed * Time.deltaTime;
         transform.Rotate(0, 0, -steerAmount);
 
-        float moveAmount = Input.GetAxis("Vertical") * moveSpeed;
+        float moveAmount = Input.GetAxis("Vertical") * moveSpeed * Time.deltaTime;
         transform.Translate(0, moveAmount, 0);
     }
 }
