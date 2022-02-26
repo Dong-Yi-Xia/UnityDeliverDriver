@@ -6,7 +6,7 @@ public class Driver : MonoBehaviour
 {
     //Adding SerializeField will make variable available in unity inspector
     [SerializeField] float steerSpeed = 300;
-    [SerializeField] float moveSpeed = 10.5f;
+    [SerializeField] float moveSpeed = 20.5f;
 
 
     // Start is called before the first frame update
