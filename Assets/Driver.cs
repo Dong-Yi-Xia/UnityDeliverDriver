@@ -6,14 +6,10 @@ public class Driver : MonoBehaviour
 {
     //Adding SerializeField will make variable available in unity inspector
     [SerializeField] float steerSpeed = 300;
-    [SerializeField] float moveSpeed = 20.5f;
+    [SerializeField] float moveSpeed = 20f;
+    [SerializeField] float speedUp = 50f;
+    [SerializeField] float speedDown = 20f;
 
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        // transform.Rotate(0, 0, 45);
-    }
 
     // Update is called once per frame
     void Update()
@@ -24,6 +20,20 @@ public class Driver : MonoBehaviour
 
         float moveAmount = Input.GetAxis("Vertical") * moveSpeed * Time.deltaTime;
         transform.Translate(0, moveAmount, 0);
+    }
+
+    void OnCollisionEnter2D(Collision2D other) {
+        moveSpeed = speedDown;    
+    }
+
+
+    void OnTriggerEnter2D(Collider2D other) 
+    {
+        if(other.tag == "SpeedUp")
+        {
+            Debug.Log("Speeding up");
+            moveSpeed = speedUp;
+        }
     }
 }
 
